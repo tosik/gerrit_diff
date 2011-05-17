@@ -1,18 +1,18 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-before_branch=$1
-after_branch=$2
+system(<<EOS)
+before_branch=#{ARGV[0]}
+after_branch=#{ARGV[1]}
 
 git fetch origin $before_branch
 before=`git log FETCH_HEAD --pretty=format:"%H" -1`
-echo $before
 
-git fetch origin refs/changes/$page_id/$after_id
+git fetch origin $after_branch
 after=`git log FETCH_HEAD --pretty=format:"%H" -1`
-echo $after
 
 git checkout $before
 git reset --hard HEAD~
 git cherry-pick $after
 git diff $before
+EOS
 
