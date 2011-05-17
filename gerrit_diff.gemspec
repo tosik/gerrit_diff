@@ -25,7 +25,8 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
-    "bin/gerrit_diff"
+    "bin/gerrit_diff",
+    "gerrit_diff.gemspec"
   ]
   s.homepage = %q{http://github.com/tosik/gerrit_diff}
   s.licenses = ["MIT"]
