@@ -1,0 +1,18 @@
+#!/bin/sh
+
+before_branch=$1
+after_branch=$2
+
+git fetch origin $before_branch
+before=`git log FETCH_HEAD --pretty=format:"%H" -1`
+echo $before
+
+git fetch origin refs/changes/$page_id/$after_id
+after=`git log FETCH_HEAD --pretty=format:"%H" -1`
+echo $after
+
+git checkout $before
+git reset --hard HEAD~
+git cherry-pick $after
+git diff $before
+
